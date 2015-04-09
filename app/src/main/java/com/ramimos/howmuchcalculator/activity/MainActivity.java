@@ -1,9 +1,13 @@
-package com.ramimos.howmuchcalculator;
+package com.ramimos.howmuchcalculator.activity;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import com.ramimos.howmuchcalculator.R;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -14,6 +18,15 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void registerComponents(){
+        Button calculate = (Button) findViewById(R.id.calculate);
+        calculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
