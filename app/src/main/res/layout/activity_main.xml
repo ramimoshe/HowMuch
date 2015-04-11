@@ -9,8 +9,8 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textSize="@dimen/abc_text_size_display_1_material"
-        android:text="How Much"
+        android:textSize="24dp"
+        android:text="@string/header"
         android:layout_marginBottom="20dp"/>
     <EditText
         android:id="@+id/inputAmount"
