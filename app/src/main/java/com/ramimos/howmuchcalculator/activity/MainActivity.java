@@ -6,16 +6,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.ramimos.howmuchcalculator.R;
+import com.ramimos.howmuchcalculator.bl.*;
+
+import java.util.Currency;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    ProductsCalculator productsCalculator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        registerComponents();
+        productsCalculator = new ProductsCalculator(CurrencyType.ILS);
     }
 
     public void registerComponents(){
@@ -23,7 +32,10 @@ public class MainActivity extends ActionBarActivity {
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                EditText input = (EditText)findViewById(R.id.inputAmount);
+                TextView result = (TextView)findViewById(R.id.result);
+                result.setText(productsCalculator.calculatePrice(Double.parseDouble(input.getText().toString())).toString());
+                result.setVisibility(View.VISIBLE);
             }
         });
     }
