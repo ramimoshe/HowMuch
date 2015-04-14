@@ -6,5 +6,6 @@ package com.ramimos.howmuchcalculator.logic;
 public enum CurrencyType {
     ILS,
     EUR,
-    USD
+    USD,
+    GBP
 }

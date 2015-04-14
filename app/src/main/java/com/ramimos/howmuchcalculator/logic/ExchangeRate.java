@@ -13,9 +13,9 @@ public class ExchangeRate {
         freeCurrencyConverterProvier.updateRates();
     }
 
-    public void addSourceCurrency(CurrencyType source){
-        freeCurrencyConverterProvier.addSourceCurrency(source);
-    }
+    //public void addSourceCurrency(CurrencyType source){
+    //    freeCurrencyConverterProvier.addSourceCurrency(source);
+    //}
 
     public void updateRates() {
         freeCurrencyConverterProvier.updateRates();

@@ -44,21 +44,35 @@ public class MainActivity extends ActionBarActivity {
         productsCalculator.setSourceCurrency(getUserSourceCurrency());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     public void registerComponents(){
         Button calculate = (Button) findViewById(R.id.calculate);
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditText input = (EditText)findViewById(R.id.inputAmount);
-                TextView result = (TextView)findViewById(R.id.result);
-                if (input.getText() == null){
+
+                if (input.getText() == null || input.getText().length() == 0){
                     showInvalidInputMessage();
                     return;
                 }
 
-                result.setText(productsCalculator.calculatePrice(Double.parseDouble(input.getText().toString())).toString());
+                String inputText = input.getText().toString();
+                Double inputPrice = Double.parseDouble(inputText);
+                setCalculationResult(inputPrice);
             }
         });
+    }
+
+    private void setCalculationResult(double userPrice) {
+        TextView resultTextView = (TextView)findViewById(R.id.result);
+        Double resultValue = productsCalculator.calculatePrice(userPrice);
+
+        resultTextView.setText(String.format("%.2f", resultValue));
     }
 
     private void showInvalidInputMessage() {

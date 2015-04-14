@@ -27,9 +27,9 @@ public class FreeCurrencyConverterProvier {
         targetCurrency = target;
     }
 
-    public void addSourceCurrency(CurrencyType source){
-        currencySourcesCache.put(source, 0d);
-    }
+    //public void addSourceCurrency(CurrencyType source){
+    //    currencySourcesCache.put(source, 0d);
+    //}
 
     public double getExchangeRate(CurrencyType sourceCurrency){
         return currencySourcesCache.get(sourceCurrency);

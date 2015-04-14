@@ -3,24 +3,23 @@ package com.ramimos.howmuchcalculator.logic;
 import java.util.ArrayList;
 
 public class ProductsCalculator {
-    private ArrayList<CurrencyType> sourceCurrencies;
+    private CurrencyType sourceCurrency;
     private ExchangeRate exchangeRate;
 
     public ProductsCalculator(CurrencyType sourceCurrency) {
-        this.sourceCurrencies = new ArrayList<CurrencyType>();
-        this.sourceCurrencies.add(sourceCurrency);
+        this.sourceCurrency = sourceCurrency;
         exchangeRate = new ExchangeRate(CurrencyType.ILS);
-        exchangeRate.addSourceCurrency(sourceCurrency);
+        //exchangeRate.addSourceCurrency(sourceCurrency);
         exchangeRate.updateRates();
     }
 
     public Double calculatePrice(Double amount){
-        Double rate = exchangeRate.getExchangeRate(sourceCurrencies.get(0));
+        Double rate = exchangeRate.getExchangeRate(sourceCurrency);
         return rate * amount;
     }
 
     public void setSourceCurrency(CurrencyType source){
-        exchangeRate.addSourceCurrency(source);
+        sourceCurrency = source;
         exchangeRate.updateRates();
     }
 }
