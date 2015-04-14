@@ -1,37 +1,38 @@
-package com.ramimos.howmuchcalculator.bl;
+package com.ramimos.howmuchcalculator.providers;
 
 import android.util.Log;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.loopj.android.http.*;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.ramimos.howmuchcalculator.logic.CurrencyType;
 
 import org.apache.http.Header;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Created by ramimoshe on 4/9/15.
+ * Created by ramimoshe on 4/12/15.
  */
-public class ExchangeRate {
-
+public class FreeCurrencyConverterProvier {
     private String serverUrlFormat = "http://www.freecurrencyconverterapi.com/api/v3/convert?q=%s&compact=ultra";
-    private HashMap<CurrencyType, Double> currencyCache;
-    private CurrencyType sourceCurrency;
+    private HashMap<CurrencyType, Double> currencySourcesCache;
+    private CurrencyType targetCurrency;
 
-    public ExchangeRate(CurrencyType source) {
-        currencyCache = new HashMap<CurrencyType, Double>();
-        sourceCurrency = source;
+    public FreeCurrencyConverterProvier(CurrencyType target) {
+        currencySourcesCache = new HashMap<CurrencyType, Double>();
+        targetCurrency = target;
     }
 
-    public void addTargetCurrency(CurrencyType currency){
-        currencyCache.put(currency, 0d);
+    public void addSourceCurrency(CurrencyType source){
+        currencySourcesCache.put(source, 0d);
     }
 
-    public double getExchangeRate(CurrencyType currency){
-        return currencyCache.get(currency);
+    public double getExchangeRate(CurrencyType sourceCurrency){
+        return currencySourcesCache.get(sourceCurrency);
     }
 
     public void updateRates(){
@@ -73,9 +74,9 @@ public class ExchangeRate {
             Log.i("com", rate.getKey().toString());
             Log.i("com", rate.getValue().toString());
 
-            String currencyKey = rate.getKey().toString().split("_")[1];
+            String currencyKey = rate.getKey().toString().split("_")[0];
 
-            currencyCache.put(CurrencyType.valueOf(currencyKey),Double.parseDouble(rate.getValue().toString()));
+            currencySourcesCache.put(CurrencyType.valueOf(currencyKey),Double.parseDouble(rate.getValue().toString()));
         }
     }
 
@@ -86,11 +87,13 @@ public class ExchangeRate {
 
     public String buildQueryOfAllCurrency(){
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<CurrencyType, Double> currency : currencyCache.entrySet()){
-            sb.append(sourceCurrency.name());
+        for (CurrencyType currency : CurrencyType.values()){
+            sb.append(currency.name());
             sb.append("_");
-            sb.append(currency.getKey().name());
+            sb.append(targetCurrency.name());
+            sb.append(",");
         }
+        sb.deleteCharAt(sb.length()-1);
 
         return sb.toString();
     }

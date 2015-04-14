@@ -1,4 +1,4 @@
-package com.ramimos.howmuchcalculator.bl;
+package com.ramimos.howmuchcalculator.logic;
 
 /**
  * Created by ramimoshe on 4/9/15.

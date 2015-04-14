@@ -6,4 +6,12 @@
     <string name="action_settings">הגדרות</string>
     <string name="title_activity_settings">הגדרות</string>
     <string name="header">הכנס את מחיר המוצר בכדי לחשב את מחירו במטבע של מדינתך</string>
+    <string name="source_currency">מטבע מקור</string>
+    <string name="currency_type">סוג מטבע</string>
+    <string name="select_currency">בחר מטבע</string>
+    <string name="about_header">אודות</string>
+    <string name="about_content">נוצר על ידי רמי משה</string>
+    <string name="general_settings_label">הגדרות כלליות</string>
+    <string name="edit_currency_label">ערוך מטבעות</string>
+    <string name="banner_ad_unit_id">ca-app-pub-9305624801543550/7448795027</string>
 </resources>

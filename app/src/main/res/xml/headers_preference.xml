@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <header android:fragment="com.ramimos.howmuchcalculator.activities.MyPreferenceFragment"
+        android:title="@string/general_settings_label"
+        android:summary="@string/edit_currency_label" />
+    <header
+        android:title="@string/about_header"
+        android:summary="@string/about_content"/>
+
+</preference-headers>
